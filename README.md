@@ -7,5 +7,5 @@ We will scrape the first page of each neighborhoods for each city, then we will 
 
 [First Part of the project: Scraping data](With_Real_Estate.html)
 
-[Second Part of the project: Analysys of the Data](Airbnb_+_Real_Estate.html)
+[Second Part of the project: Analysis of the Data](Airbnb_+_Real_Estate.html)
 
