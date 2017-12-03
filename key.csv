@@ -1,0 +1,40 @@
+city,Areas,neigh
+F,Campo di Marte,Firenze - 16 - Le Cure
+F,Campo di Marte,Firenze - 17 - Collina Nord
+F,Campo di Marte,"Firenze - 18 - Settignano, Coverciano"
+F,Centro Storico,Firenze -  8 - Il Prato
+F,Centro Storico,"Firenze -  9 - S. Jacopino, La Fortezza"
+F,Centro Storico,Firenze - 11 - Viali
+F,Centro Storico,"Firenze - 12 - Duomo, Oltrarno"
+F,Gavinana-Galluzzo,"Firenze -  4 - Cascine, Cintoia, Argingrosso, L'Isolotto"
+F,Gavinana-Galluzzo,"Firenze -  5 - Ugnano, Oltregreve, Mantignano"
+F,Gavinana-Galluzzo,"Firenze -  7 - Pisana, Soffiano"
+F,Isolotto- Legnaia,"Firenze -  6 - Collina sud, Galluzzo, Ponte a Ema"
+F,Isolotto- Legnaia,Firenze - 13 - S.Gaggio
+F,Isolotto- Legnaia,"Firenze - 14 - Bellariva, Gavinana, La Rondinella, Sorgane"
+F,Rifredi,"Firenze - 10 - Leopoldo, Rifredi"
+F,Rifredi,"Firenze -  3 - Il Lippi, Novoli, Barsanti"
+F,Rifredi,"Firenze -  1 - Castello, Careggi, Le Panche"
+F,Rifredi,"Firenze -  2 - Piana di Castello, Pistoiese"
+T,"Aurora, Vanchiglia - Sassi - Madonna del Pilone","Torino - 11 - Vanchiglia, Regio Parco"
+T,"Aurora, Vanchiglia - Sassi - Madonna del Pilone","Torino - 10 - Valdocco, Aurora"
+T,Barriera di Milano - Regio Parco - Barca - Bertolla - Falchera - Rebaudengo - Villaretto,"Torino - 12 - Barriera Milano, Falchera, Barca-Bertola"
+T,Borgo Vittoria - Madonna di Campagna - Lucento - Vallette,"Torino - 13 - Madonna di Campagna, Borgo Vittoria, ..."
+T,Borgo Vittoria - Madonna di Campagna - Lucento - Vallette,"Torino - 14 - Lucento, Vallette"
+T,Centro - Crocetta,Torino -  1 - Centro
+T,Centro - Crocetta,"Torino -  2 - Crocetta, San Secondo"
+T,San Donato - Campidoglio - Parella,"Torino - 15 - Parella, Pozzo Strada"
+T,San Paolo - Cenisia - Pozzo Strada - Cit Turin - Borgata Lesna,"Torino -  8 - Cenisia, San Paolo"
+T,San Paolo - Cenisia - Pozzo Strada - Cit Turin - Borgata Lesna,"Torino -  9 - Cit Turin, San Donato, Campidoglio"
+T,San Salvario - Cavoretto - Borgo Po - Nizza Millefonti - Lingotto - Filadelfia,Torino -  3 - San Salvario
+T,San Salvario - Cavoretto - Borgo Po - Nizza Millefonti - Lingotto - Filadelfia,"Torino -  4 - Valentino, Italia 61, Nizza Millefonti"
+T,San Salvario - Cavoretto - Borgo Po - Nizza Millefonti - Lingotto - Filadelfia,Torino -  6 - Lingotto
+T,Santa Rita - Mirafiori,Torino -  7 - Santa Rita
+T,Santa Rita - Mirafiori,Torino - 16 - Mirafiori
+V,CHIRIGNAGO - ZELARINO ( MESTRE OVEST),Venezia - 13 - Zelarino
+V,FAVARO VENETO,Venezia - 14 - Favaro Veneto
+V,LIDO - PELLESTRINA (VENEZIA LITORALE),Venezia -  8 - Lido
+V,MARGHERA,Venezia - 12 - Marghera
+V,MESTRE - CARPENEDO (MESTRE CENTRO),Venezia - 11 - Mestre
+V,VENEZIA - MURANO - BURANO (VENEZIA INSULARE),Venezia -  9 - Murano
+V,VENEZIA - MURANO - BURANO (VENEZIA INSULARE),Venezia - 10 - Burano
