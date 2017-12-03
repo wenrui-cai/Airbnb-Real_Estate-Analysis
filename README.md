@@ -6,5 +6,6 @@ This project will compare listing I obtained from Airbnb open Data Source with t
 We will scrape the first page of each neighborhoods for each city, then we will compare the neiborhoods with the Areas given in the Airbnb Data and answer to the question.
 
 [First Part of the project: Scraping data](With_Real_Estate.html)
+
 [Second Part of the project: Analysys of the Data](Airbnb_+_Real_Estate.html)
 
