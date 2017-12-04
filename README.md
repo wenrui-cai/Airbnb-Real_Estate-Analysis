@@ -13,6 +13,8 @@ We will scrape the first page of each neighborhoods for each city, then we will 
 [Second Part of the project: Analysis of the Data](https://rawgit.com/wenrui-cai/Airbnb-Real_Estate-Analysis/master/Airbnb_%2B_Real_Estate.html)
 
 Thank you to Airbnb and casaclick.it for providing the data!
+
 ![Airbnb](airbnb.png)
+
 ![Casaclick.it](casaclick_logo_1.png)
 
