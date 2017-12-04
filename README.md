@@ -10,5 +10,7 @@ We will scrape the first page of each neighborhoods for each city, then we will 
 
 [First Part of the project: Scraping data](https://rawgit.com/wenrui-cai/Airbnb-Real_Estate-Analysis/master/With_Real_Estate.html) 
 
+
+
 [Second Part of the project: Analysis of the Data](https://rawgit.com/wenrui-cai/Airbnb-Real_Estate-Analysis/master/Airbnb_%2B_Real_Estate.html)
 
