@@ -10,9 +10,9 @@ The end goal for this project is to answer to the question: “If I were to buy 
 
 We will scrape the first page of each neighborhoods for each city, then we will compare the neiborhoods with the Areas given in the Airbnb Data and answer to the question.
 
-[First Part of the project: Scraping data](https://rawgit.com/wenrui-cai/Airbnb-Real_Estate-Analysis/master/With-Real-Estate.html) 
+[First Part of the project: Scraping data](https://rawgit.com/wenrui-cai/Airbnb-Real_Estate-Analysis/master/With_Real_Estate.html) 
 
-[Second Part of the project: Analysis of the Data](https://rawgit.com/wenrui-cai/Airbnb-Real_Estate-Analysis/master/Airbnb_%2B_Real_Estate.html)
+[Second Part of the project: Analysis of the Data](https://rawgit.com/wenrui-cai/Airbnb-Real_Estate-Analysis/master/Airbnb%2BReal_Estate.html)
 
 Thank you to Airbnb and casaclick.it for providing the data!
 
