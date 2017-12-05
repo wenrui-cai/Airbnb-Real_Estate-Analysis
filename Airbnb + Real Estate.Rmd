@@ -1,0 +1,172 @@
+---
+title: "Part II: Airbnb + Real Estate Project"
+author: "Wenrui Cai"
+date: "December, 2017"
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+---
+<!-- Don't edit in between this line and the one below -->
+```{r include=FALSE}
+# Don't delete this chunk if you are using the DataComputing package
+library(DataComputing)
+```
+*Source file* 
+```{r, results='asis', echo=FALSE}
+includeSourceDocuments()
+```
+<!-- Don't edit the material above this line -->
+
+```{r, echo=FALSE, eval=FALSE, warning=FALSE, message=FALSE, }
+library(DataComputing)
+library(rvest)
+library(dplyr)
+wrap_rmd(file, width = 30, text = NULL, backup)
+```
+
+## Analysis of Airbnb and Real Estate data
+This is the second part of the project, [here is the first part](With_Real_Estate.html)
+
+In the "With_Real_Estate" document, I showed how I obtained the data from a website of Real Estate website. 
+
+Here I start from downloading the datasets from [Airbnb Data Collection](http://tomslee.net/airbnb-data-collection-get-the-data).
+
+###Obtain the Airbnb Data
+
+I chose Florence, Turin and Venice data from June 2017, and created a combined the three datasets into a compact one "AirbnbItaly".
+
+```{r}
+Florence06 <- read.csv(("florence_1366_2017-06-22.csv")) %>%
+  mutate(city = "F") #%>%
+  #This next line might be useful for future projects, not for this one in particular
+  #select(room_id,room_type,city,reviews,overall_satisfaction,accommodates,bedrooms,price, neighborhood, latitude,longitude) 
+Turin06 <- read.csv("turin_1407_2017-06-28.csv")%>%
+  mutate(city = "T")
+Venice06 <- read.csv("venice_1361_2017-06-22.csv") %>%
+  mutate(city = "V")
+AirbnbItaly <-  
+  rbind(Venice06, Florence06, Turin06)  
+```
+
+Then I grouped by the city name and neighborhood and summarized the dataset using the median price. The median is useful for the comparisons. I also renamed the variable "neighborhood" into "Areas" in order to not get confused with the variable in the scraped dataset.
+
+```{r}
+FinalAirbnb <- AirbnbItaly %>% 
+  group_by(city, neighborhood) %>%
+  summarise(medianAirbnb = median(price)) %>%
+  arrange(desc(medianAirbnb)) %>%
+  rename('Areas' = 'neighborhood') 
+knitr::kable(head(FinalAirbnb,3))
+```
+
+### Load Real Estate dataset 
+First, I loaded the dataset that I had previously exported in the [first part of the project ](With_Real_Estate.html)
+
+I also wrote key.cvs in order to match the neighborhoods from the scraped dataset with the Areas in the Airbnb dataset. The matching was done manually through research conducted on Wikipedia.
+
+```{r}
+Estate <- read.csv("table.csv") %>%
+  select(neigh, price)
+key <- read.csv("key.csv")
+```
+
+```{r, message=FALSE, warning=FALSE}
+Joined <- key %>%
+  full_join(Estate, by = "neigh") %>%
+  select(city, Areas, neigh, price) %>%
+  rename('neighborhood' = 'neigh') %>%
+  rename('estateprice' = 'price') %>%
+  na.omit()
+knitr::kable(head(Joined, 3))
+```
+
+I calculated the median for the real estate data too.
+
+```{r}
+FinalEstate <- Joined %>%
+  group_by(city, Areas) %>%
+  summarise(medianEstate_inthousands = median(estateprice)) %>%
+  arrange(desc(medianEstate_inthousands)) %>%
+  select(medianEstate_inthousands, Areas, city) 
+knitr::kable(head(FinalEstate, 3))
+```
+
+###Some distribution plots
+
+To give an idea of how the both datasets are distributed, I used ggplot from DataComputing package.
+We can see that most of the Airbnb rentals tend to cheapest in Turin and most expensive in Venice.
+
+```{r, warning=FALSE}
+AirbnbItaly %>%
+  ggplot(aes(x=price, group=city, color=city)) +
+  geom_density(adjust=2) +
+  xlim(0, 400)
+
+AirbnbItaly %>%
+  ggplot(aes(x=city, y=price)) +
+  geom_boxplot() +
+  ylim(0,400)
+```
+
+The same plots are shown for the Real Estate data and the results are slighly different: while Turin has on average the cheapest house prices, Venice does not have as the most expensive houses. Florence has on average the most expensive houses. This is an interesting point to consider for our final analysis.
+
+```{r, warning=FALSE, echo=FALSE}
+Joined %>%
+  ggplot(aes(x=estateprice, group=city, color=city)) +
+  geom_density(adjust=2) +
+  xlim(0, 400)
+
+Joined %>%
+  ggplot(aes(x=city, y=estateprice)) +
+  geom_boxplot() +
+  ylim(0,400)
+```
+
+### Combine the scraped with the Airbnb dataset
+
+Now, let's combine the two scraped dataset (which was previously matched through they key) with the Airbnb dataset. 
+
+```{r, warning=FALSE}
+Airbnb_Estate <- FinalAirbnb %>%
+  full_join(FinalEstate, by = "Areas") %>%
+  select(Areas, city.x, medianAirbnb, medianEstate_inthousands) %>%
+  arrange(desc(medianEstate_inthousands))
+knitr::kable(head(Airbnb_Estate,3))
+```
+
+### Where should I buy a house?
+Everything done so far was just "getting the data". Now we can answer our original question:"Where should I buy a house for a higher return in investment by renting it on Airbnb?" There are some assumptions to be made:
+
+- Every price listing on Airbnb stay constant throughout the years
+
+- Every listing on Airbnb is rented out every day 
+
+With those two assumptions, we will new ratio variable between estate price (price from which the house if bought for, in thousands of euro) for each neighborhood and divide it by the  the Airbnb price * 365 (amount rented out in euro per one year). This ratio will represent "how many years it takes to gain back the amount spent on buying the house". 
+
+The goal is to observe if there is a certain neighborhood, and if possible, even a certain city in which this ratio will be the lowest.
+
+```{r}
+Airbnb_Estate <- Airbnb_Estate %>%
+  mutate(ratio = (medianEstate_inthousands * 1000 / (medianAirbnb * 365)))  %>%
+  arrange(ratio)
+knitr::kable(head(Airbnb_Estate))
+```
+
+Seems Venice has overall the higher return on investment as 5 out of the top 6 neighborhoods are from Venice! (You will be able to gain back the amount spent on buying the house in 5-6years only!)
+
+```{r}
+library(ggplot2)
+ggplot(data=Airbnb_Estate,aes(x=medianAirbnb,y=medianEstate_inthousands))+geom_point()+aes(colour=city.x)
+```
+
+From this final scatter plot, which represents the ratio variable, we can see that Turin and Florence tend to be clustered together in the same range of prices. Venice on the other side, tend to have relatively low Airbnb prices but also much lower Real Estate Prices compared to the other two cities
+
+So to answer our final question:
+
+If we want to buy one house from one specific neighborhood, we should choose CHIRIGNAGO - ZELARINO ( MESTRE OVEST) from Venice
+
+If we want to choose one city, Venice is the choice to go for!
+
+## Good luck with finals guys! 
+
